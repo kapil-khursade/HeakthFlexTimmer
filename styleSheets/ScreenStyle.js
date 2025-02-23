@@ -32,6 +32,16 @@ const HomeScreenStyle = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
   },
+  exportBtn: {
+    width: 150,
+    flexDirection: "row", 
+    alignItems: "center", 
+    justifyContent: "space-between",
+  },
+  flatListContainer: {
+     height: 200, 
+     width: "100%"
+  },
   dataText: {
     fontSize: 16,
     color: "#FFFFFF"

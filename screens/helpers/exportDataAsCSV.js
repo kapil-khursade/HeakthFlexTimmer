@@ -25,7 +25,7 @@ const saveCsvFile = async (csvData) => {
         Alert.alert("Success", `CSV file saved at: ${path}`);
         console.log("File saved at:", path);
     } catch (error) {
-        console.error("Failed to save CSV file:", error);
+        Alert.alert("Failed to save CSV file:", error.toString());
     }
 };
 

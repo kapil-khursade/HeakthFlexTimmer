@@ -51,7 +51,8 @@ const TimerTableComponant = ({timerArr, themeStyles, setTimerArr, catagoryArr}) 
     
     <View style={HomeScreenStyle.headerContainer}>
       <Text style={{...themeStyles.text, ...HomeScreenStyle.headingText}}>Your Timers </Text>
-      <TouchableOpacity onPress={() => exportDataAsCSV()} style={HomeScreenStyle.actionBtn}>
+      <TouchableOpacity onPress={() => exportDataAsCSV()} style={HomeScreenStyle.exportBtn}>
+         <Text style={{...themeStyles.text, ...HomeScreenStyle.tableCell}}>Export Data</Text>
           <Icon name={"download"} size={20} color={"blue"}/>
       </TouchableOpacity>
     </View>
@@ -67,8 +68,11 @@ const TimerTableComponant = ({timerArr, themeStyles, setTimerArr, catagoryArr}) 
       <View style={HomeScreenStyle.sortContainer}>
       <Text style={{...themeStyles.text, ...HomeScreenStyle.subHeadingText}}>Bulk Actions for {bulkCategory}</Text>
       <View style={HomeScreenStyle.bulkActionBtnContainer}>
-        <TouchableOpacity onPress={() => toggleStart(null, bulkCategory, setTimerArr)} style={HomeScreenStyle.actionBtn}>
+        <TouchableOpacity onPress={() => toggleStart(null, {bulkCategory, action: "Running"}, setTimerArr)} style={HomeScreenStyle.actionBtn}>
           <Icon name={"play-circle"} size={20} color={"blue"}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => toggleStart(null, {bulkCategory, action: "Pause"}, setTimerArr)} style={HomeScreenStyle.actionBtn}>
+          <Icon name={"pause"} size={20} color={"blue"}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => resetTimer(null, bulkCategory, setTimerArr)} style={HomeScreenStyle.actionBtn}>
           <Icon name="refresh" size={20} color={"blue"}/>
@@ -88,7 +92,7 @@ const TimerTableComponant = ({timerArr, themeStyles, setTimerArr, catagoryArr}) 
         <Text style={HomeScreenStyle.tableHeaderText}>Actions</Text>
       </View>
 
-      <View>
+      <View style={HomeScreenStyle.flatListContainer}>
       <FlatList
           data={bulkCategory === '' ? timerArr : sortedTimerArr}
           renderItem={renderItem}

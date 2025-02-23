@@ -1,7 +1,7 @@
 import saveTimers from "./saveTimers";
 import startCountdown from "./startCountdown";
 
-export default (id, bulkCategory, setTimerArr) => {
+export default (id, bulkCategoryAction, setTimerArr) => {
     setTimerArr(prevTimers => {
       const updatedTimer =  prevTimers.map(timer => {
         if (timer.id === id) {
@@ -12,9 +12,14 @@ export default (id, bulkCategory, setTimerArr) => {
             clearInterval(timer.intervalId);
             return { ...timer, status: "Paused"};
           }
-        }else if(bulkCategory && bulkCategory == timer.category){
+        }else if(bulkCategoryAction && bulkCategoryAction.bulkCategory == timer.category){
+           
+          if(bulkCategoryAction.action === "Running"){
             startCountdown(timer.id, setTimerArr);
-            return { ...timer, status: "Running" };
+          }else{
+            clearInterval(timer.intervalId)
+          }
+            return { ...timer, status: bulkCategoryAction.action };
         }
         return timer;
       });

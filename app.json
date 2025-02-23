@@ -1,0 +1,11 @@
+{
+  "name": "HealthflexTimmer",
+  "displayName": "HealthflexTimmer",
+  "icon": "./assets/icon.png",
+  "android": {
+    "package": "com.anonymous.healthflextimmer"
+  },
+  "ios": {
+    "bundleIdentifier": "com.anonymous.healthflextimmer"
+  }
+}

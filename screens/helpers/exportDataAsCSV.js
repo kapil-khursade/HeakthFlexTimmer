@@ -7,21 +7,18 @@ const convertJsonToCsv = (jsonArray) => {
         return "";
     }
 
-    // Extract column headers
     const headers = Object.keys(jsonArray[0]);
 
-    // Convert each JSON object to a CSV row
     const rows = jsonArray.map(obj =>
         headers.map(header => JSON.stringify(obj[header] ?? "")).join(",")
     );
 
-    // Combine headers and rows
     return [headers.join(","), ...rows].join("\n");
 };
 
 const saveCsvFile = async (csvData) => {
     try {
-        const path = `${RNFS.DownloadDirectoryPath}/timers.csv`;  // Save to Downloads folder
+        const path = `${RNFS.DownloadDirectoryPath}/timers.csv`; 
 
         await RNFS.writeFile(path, csvData, 'utf8');
         
@@ -38,10 +35,10 @@ export default async () => {
         const storedTimers = await AsyncStorage.getItem('timers');
         
         if (storedTimers !== null) {
-            const jsonData = JSON.parse(storedTimers);  // Convert string to JSON
-            const csvData = convertJsonToCsv(jsonData); // Convert JSON to CSV
+            const jsonData = JSON.parse(storedTimers); 
+            const csvData = convertJsonToCsv(jsonData);
             
-            await saveCsvFile(csvData);  // Save to file
+            await saveCsvFile(csvData); 
         } else {
             Alert.alert("No Data", "No timers found");
         }

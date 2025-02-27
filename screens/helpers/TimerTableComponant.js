@@ -41,7 +41,7 @@ const TimerTableComponant = ({timerArr, themeStyles, setTimerArr, catagoryArr}) 
       <Icon name="trash-o" size={20} color={"red"}/>
     </TouchableOpacity>
     </View>
-    {item.status === "Running" ? <Progress.Bar progress={item.countdown/item.duration} width={340} /> : ""}
+    {item.status === "Running" ? <Progress.Bar progress={item.countdown/item.duration} width={null} /> : ""}
   </View>
    )
   }
